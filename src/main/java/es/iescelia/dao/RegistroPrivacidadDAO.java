@@ -27,19 +27,20 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
                     NivelSensibilidad nSensibilidad = NivelSensibilidad.valueOf(rs.getString("nivel_sensibilidad"));
                     Empresa empresa = new Empresa(rs.getInt("id_empresa"));
 
-
                     if (tipoDato.equalsIgnoreCase("ACTIVIDAD")) {
-                        RegistroActividad registroEncontrado = new RegistroActividad(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);  
+                        RegistroActividad registroEncontrado = new RegistroActividad(idRegistro, fechaHora, detalleDato,
+                                nSensibilidad, empresa);
                         return Optional.of(registroEncontrado);
-                    } else if(tipoDato.equalsIgnoreCase("UBICACION")){
-                        RegistroUbicacion registroEncontrado = new RegistroUbicacion(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);    
+                    } else if (tipoDato.equalsIgnoreCase("UBICACION")) {
+                        RegistroUbicacion registroEncontrado = new RegistroUbicacion(idRegistro, fechaHora, detalleDato,
+                                nSensibilidad, empresa);
                         return Optional.of(registroEncontrado);
                     }
                 }
             }
 
         } catch (Exception e) {
-             System.err.println("Error al buscar un registro con su id: " + e.getMessage());
+            System.err.println("Error al buscar un registro con su id: " + e.getMessage());
         }
 
         return Optional.empty();
@@ -114,14 +115,48 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
 
     @Override
     public void update(RegistroPrivacidad entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+         // Averiguamos de qué tipo es para la primera columna
+        String tipoDato = "";
+        if (entity instanceof RegistroActividad) {
+            tipoDato = "ACTIVIDAD";
+        } else if(entity instanceof RegistroUbicacion){
+            tipoDato = "UBICACION";   
+        }
+
+         String sql = "UPDATE registros_privacidad SET tipo_dato = ?, fecha_hora = ?, detalle_dato = ?, nivel_sensibilidad = ?, id_empresa = ? WHERE id_registro = ?";
+
+         try (Connection conn = ConexionBD.conectar();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                    pstmt.setString(1, tipoDato);
+                    pstmt.setObject(2, entity.getFechaHora());
+                    pstmt.setString(3, entity.getDetalleDato());
+                    pstmt.setString(4, entity.getNivelSensibilidad().name());
+                    pstmt.setInt(5, entity.getEmpresa().getId());
+                    pstmt.setInt(6, entity.getIdRegistro());
+
+                    pstmt.executeUpdate();
+                    System.out.println("Registro actualizado correctamente  en la BD.");
+            
+         } catch (SQLException e) {
+            System.err.println("Error al actualizar un registro: " + e.getMessage());
+         }
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        String sql = "DELETE FROM registros_privacidad WHERE id_registro = ?";
+
+        try (Connection conn = ConexionBD.conectar();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+            System.out.println("Registro borrado correctamente.");
+        } catch (SQLException e) {
+            System.err.println("Error al borrar un registro: " + e.getMessage());
+        }
     }
 
 }
