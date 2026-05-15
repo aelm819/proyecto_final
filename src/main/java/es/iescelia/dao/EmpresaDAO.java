@@ -93,15 +93,28 @@ public class EmpresaDAO implements DAO<Empresa> {
 
             pstmt.executeUpdate();
             System.out.println("Empresa actualizada correctamente en la BD.");
-            
+
         } catch (SQLException e) {
              System.err.println("Error al actualizar la empresa: " + e.getMessage());
         }
     }
 
+    
+
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        String sql = "DELETE FROM empresas WHERE id_empresa = ?";
+
+        try (Connection conn = ConexionBD.conectar();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setInt(1, id);
+
+                pstmt.executeUpdate();
+                System.out.println("Empresa con ID " + id + " borrado correctamente.");
+            
+        } catch (SQLException e) {
+            System.err.println("Error al intentar borrar la empresa: " + e.getMessage());
+        }
     }
 }
