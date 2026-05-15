@@ -18,7 +18,7 @@ public class EmpresaDAO implements DAO<Empresa> {
 
             pstmt.setInt(1, id);
 
-            try (ResultSet rs = pstmt.executeQuery();) {
+            try (ResultSet rs = pstmt.executeQuery()) {
 
                 if (rs.next()) {
                     Empresa empresaEncontrada = new Empresa(

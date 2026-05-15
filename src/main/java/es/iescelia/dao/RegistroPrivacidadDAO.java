@@ -11,8 +11,38 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
 
     @Override
     public Optional<RegistroPrivacidad> findById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Optional'");
+        String sql = "SELECT * FROM registros_privacidad WHERE id_registro = ?";
+
+        try (Connection conn = ConexionBD.conectar();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int idRegistro = rs.getInt("id_registro");
+                    String tipoDato = rs.getString("tipo_dato");
+                    LocalDateTime fechaHora = rs.getTimestamp("fecha_hora").toLocalDateTime();
+                    String detalleDato = rs.getString("detalle_dato");
+                    NivelSensibilidad nSensibilidad = NivelSensibilidad.valueOf(rs.getString("nivel_sensibilidad"));
+                    Empresa empresa = new Empresa(rs.getInt("id_empresa"));
+
+
+                    if (tipoDato.equalsIgnoreCase("ACTIVIDAD")) {
+                        RegistroActividad registroEncontrado = new RegistroActividad(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);  
+                        return Optional.of(registroEncontrado);
+                    } else if(tipoDato.equalsIgnoreCase("UBICACION")){
+                        RegistroUbicacion registroEncontrado = new RegistroUbicacion(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);    
+                        return Optional.of(registroEncontrado);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+             System.err.println("Error al buscar un registro con su id: " + e.getMessage());
+        }
+
+        return Optional.empty();
     }
 
     @Override
@@ -32,14 +62,16 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
                 String detalleDato = rs.getString("detalle_dato");
                 NivelSensibilidad nSensibilidad = NivelSensibilidad.valueOf(rs.getString("nivel_sensibilidad"));
                 Empresa empresa = new Empresa(rs.getInt("id_empresa"));
-                // Empresa empresa = new Empresa(rs.getInt("id_empresa"), "Desconocido", "Desconocido");
-
+                // Empresa empresa = new Empresa(rs.getInt("id_empresa"), "Desconocido",
+                // "Desconocido");
 
                 if (tipoDato.equalsIgnoreCase("ACTIVIDAD")) {
-                   RegistroActividad registroAct = new RegistroActividad(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);
+                    RegistroActividad registroAct = new RegistroActividad(idRegistro, fechaHora, detalleDato,
+                            nSensibilidad, empresa);
                     listaRegistros.add(registroAct);
                 } else if (tipoDato.equalsIgnoreCase("UBICACION")) {
-                    RegistroUbicacion registroUbi = new RegistroUbicacion(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);
+                    RegistroUbicacion registroUbi = new RegistroUbicacion(idRegistro, fechaHora, detalleDato,
+                            nSensibilidad, empresa);
                     listaRegistros.add(registroUbi);
                 }
 
