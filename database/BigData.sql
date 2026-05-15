@@ -24,6 +24,6 @@ INSERT INTO empresas (nombre, sector) VALUES ('Meta', 'Redes Sociales');
 SELECT *
 FROM empresas;
 
-INSERT INTO registros_privacidad (tipo_dato, fecha_hora, detalle_dato, nivel_sensibilidad, id_empresa) VALUES 								('Actividad', NOW(), 'Like en publicación', 'Bajo', 1);
+INSERT INTO registros_privacidad (tipo_dato, fecha_hora, detalle_dato, nivel_sensibilidad, id_empresa) VALUES 								('ACTIVIDAD', NOW(), 'Like en publicación', 'BAJO', 1);
 SELECT *
 FROM registros_privacidad;
