@@ -1,6 +1,7 @@
 package es.iescelia.dao;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import es.iescelia.model.*;
@@ -10,14 +11,45 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
 
     @Override
     public Optional<RegistroPrivacidad> findById(int id) {
-         // TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Optional'");
     }
 
     @Override
     public List<RegistroPrivacidad> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        List<RegistroPrivacidad> listaRegistros = new ArrayList<>();
+        String sql = "SELECT * FROM registros_privacidad";
+
+        try (Connection conn = ConexionBD.conectar();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+
+                int idRegistro = rs.getInt("id_registro");
+                String tipoDato = rs.getString("tipo_dato");
+                LocalDateTime fechaHora = rs.getTimestamp("fecha_hora").toLocalDateTime();
+                String detalleDato = rs.getString("detalle_dato");
+                NivelSensibilidad nSensibilidad = NivelSensibilidad.valueOf(rs.getString("nivel_sensibilidad"));
+                Empresa empresa = new Empresa(rs.getInt("id_empresa"));
+                // Empresa empresa = new Empresa(rs.getInt("id_empresa"), "Desconocido", "Desconocido");
+
+
+                if (tipoDato.equalsIgnoreCase("ACTIVIDAD")) {
+                   RegistroActividad registroAct = new RegistroActividad(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);
+                    listaRegistros.add(registroAct);
+                } else if (tipoDato.equalsIgnoreCase("UBICACION")) {
+                    RegistroUbicacion registroUbi = new RegistroUbicacion(idRegistro, fechaHora, detalleDato, nSensibilidad, empresa);
+                    listaRegistros.add(registroUbi);
+                }
+
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar todos los datos en la BD: " + e.getMessage());
+        }
+
+        return listaRegistros;
+
     }
 
     @Override
@@ -27,26 +59,25 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
         if (entity instanceof RegistroUbicacion) {
             tipoDato = "UBICACIÓN";
         } else if (entity instanceof RegistroActividad) {
-             tipoDato = "ACTIVIDAD";
-         }
+            tipoDato = "ACTIVIDAD";
+        }
 
-         String sql = "INSERT INTO registros_privacidad (tipo_dato, fecha_hora, detalle_dato, nivel_sensibilidad, id_empresa) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO registros_privacidad (tipo_dato, fecha_hora, detalle_dato, nivel_sensibilidad, id_empresa) VALUES (?, ?, ?, ?, ?)";
 
-            try (Connection conn = ConexionBD.conectar();
-                PreparedStatement pstmt = conn.prepareStatement(sql)
-                ) {
-                    pstmt.setString(1, tipoDato);
-                    pstmt.setObject(2, entity.getFechaHora());
-                    pstmt.setString(3, entity.getDetalleDato());
-                    pstmt.setString(4, entity.getNivelSensibilidad().name());
-                    pstmt.setInt(5, entity.getEmpresa().getId());
+        try (Connection conn = ConexionBD.conectar();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, tipoDato);
+            pstmt.setObject(2, entity.getFechaHora());
+            pstmt.setString(3, entity.getDetalleDato());
+            pstmt.setString(4, entity.getNivelSensibilidad().name());
+            pstmt.setInt(5, entity.getEmpresa().getId());
 
-                    pstmt.executeUpdate();
-                    System.out.println("Empresa insertada correctamanete en la BD.");
-                
-            } catch (SQLException e) {
-                 System.err.println("Error al guardar datos en la BD: " + e.getMessage());
-            }
+            pstmt.executeUpdate();
+            System.out.println("Empresa insertada correctamanete en la BD.");
+
+        } catch (SQLException e) {
+            System.err.println("Error al guardar datos en la BD: " + e.getMessage());
+        }
     }
 
     @Override
@@ -60,5 +91,5 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
-    
+
 }

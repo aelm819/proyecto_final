@@ -10,10 +10,10 @@ CREATE TABLE empresas (
 
 CREATE TABLE registros_privacidad (
 	id_registro INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	tipo_dato ENUM ("Ubicacion", "Actividad"),
+	tipo_dato ENUM ("UBICACION", "ACTIVIDAD"),
 	fecha_hora TIMESTAMP NOT NULL,
 	detalle_dato VARCHAR(200) NOT NULL,
-	nivel_sensibilidad ENUM("Bajo", "Medio", "Alto"),
+	nivel_sensibilidad ENUM("BAJO", "MEDIO", "ALTO"),
 	id_empresa INT UNSIGNED NOT NULL,
 	FOREIGN KEY (id_empresa) REFERENCES empresas (id_empresa)
 );

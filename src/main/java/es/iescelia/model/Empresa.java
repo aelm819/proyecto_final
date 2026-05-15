@@ -12,6 +12,12 @@ public class Empresa {
         this.sector = sector;
     }
 
+    public Empresa(int id) {
+        this.id = id;
+        this.nombre = null;
+        this.sector = null;
+    }
+
     // Getters Y Setters
     public int getId() {
         return id;
