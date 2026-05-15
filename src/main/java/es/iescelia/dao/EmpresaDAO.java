@@ -82,9 +82,21 @@ public class EmpresaDAO implements DAO<Empresa> {
 
     @Override
     public void update(Empresa entity) {
-         
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        String sql = "UPDATE empresas SET nombre = ?, sector = ? WHERE id_empresa = ? ";
+
+        try (Connection conn = ConexionBD.conectar();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, entity.getNombre());
+            pstmt.setString(2, entity.getSector());
+            pstmt.setInt(3, entity.getId());
+
+            pstmt.executeUpdate();
+            System.out.println("Empresa actualizada correctamente en la BD.");
+            
+        } catch (SQLException e) {
+             System.err.println("Error al actualizar la empresa: " + e.getMessage());
+        }
     }
 
     @Override
