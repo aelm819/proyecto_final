@@ -50,7 +50,7 @@ public class App extends Application {
         System.out.println("--- 1. GUARDANDO EMPRESA ---");
         // Nota: Asumo que tu constructor pide (id, nombre, sector). 
         // Si el ID es autoincremental en MySQL, no hará falta pasarlo aquí.
-        Empresa miEmpresa = new Empresa(1, "TechGlobal", "Desarrollo de Software");
+        Empresa miEmpresa = new Empresa("TechGlobal", "Desarrollo de Software");
         
         empresaDAO.insert(miEmpresa);
 
@@ -62,11 +62,11 @@ public class App extends Application {
         
         // Creamos una Ubicación
         RegistroUbicacion regUbicacion = new RegistroUbicacion(
-            101,                            // ID del registro
-            LocalDateTime.now(),            // Fecha y hora actual
-            "Lat: 40.4168, Lon: -3.7038", // Detalle
-            NivelSensibilidad.ALTO,         // Enum de sensibilidad
-            miEmpresa                       // Objeto empresa anidado
+            101,                             
+            LocalDateTime.now(),             
+            "Lat: 40.4168, Lon: -3.7038",  
+            NivelSensibilidad.ALTO,         
+            miEmpresa                       
         );
 
         // Creamos una Actividad
