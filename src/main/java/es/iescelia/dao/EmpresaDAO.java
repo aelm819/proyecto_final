@@ -3,8 +3,9 @@ package es.iescelia.dao;
 import java.sql.*;
 import java.util.*;
 
+import es.iescelia.connection.ConexionBD;
 import es.iescelia.model.*;
-import es.iescelia.util.*;;
+import es.iescelia.utils.*;;
 
 public class EmpresaDAO implements DAO<Empresa> {
 
@@ -63,20 +64,28 @@ public class EmpresaDAO implements DAO<Empresa> {
 
     @Override
     public void insert(Empresa entity) {
-
         String sql = "INSERT INTO empresas (nombre, sector) VALUES (?, ?)";
 
         try (Connection conn = ConexionBD.conectar();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, entity.getNombre());
             pstmt.setString(2, entity.getSector());
 
             pstmt.executeUpdate();
+
+            // 2. RECUPERAR EL ID QUE MYSQL ACABA DE CREAR:
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    int idGenerado = rs.getInt(1);  
+                    entity.setId(idGenerado);  
+                }
+            }
+
             System.out.println("Empresa insertada correctamente en la BD.");
 
         } catch (SQLException e) {
-            System.err.println("Error al insertar la empresa: " + e.getMessage());
+            System.err.println("Error al insertar empresa: " + e.getMessage());
         }
     }
 
@@ -95,24 +104,22 @@ public class EmpresaDAO implements DAO<Empresa> {
             System.out.println("Empresa actualizada correctamente en la BD.");
 
         } catch (SQLException e) {
-             System.err.println("Error al actualizar la empresa: " + e.getMessage());
+            System.err.println("Error al actualizar la empresa: " + e.getMessage());
         }
     }
-
-    
 
     @Override
     public void delete(int id) {
         String sql = "DELETE FROM empresas WHERE id_empresa = ?";
 
         try (Connection conn = ConexionBD.conectar();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setInt(1, id);
+            pstmt.setInt(1, id);
 
-                pstmt.executeUpdate();
-                System.out.println("Empresa con ID " + id + " borrado correctamente.");
-            
+            pstmt.executeUpdate();
+            System.out.println("Empresa con ID " + id + " borrado correctamente.");
+
         } catch (SQLException e) {
             System.err.println("Error al intentar borrar la empresa: " + e.getMessage());
         }

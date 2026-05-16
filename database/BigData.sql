@@ -19,11 +19,10 @@ CREATE TABLE registros_privacidad (
 );
 
  
-INSERT INTO empresas (nombre, sector) VALUES ('Meta', 'Redes Sociales');
+INSERT INTO empresas (nombre, sector) VALUES 
+('Meta', 'Redes Sociales'),
+('Google', 'Servicios Digitales'),
+('Amazon', 'E-commerce');
+ 
 
-SELECT *
-FROM empresas;
-
-INSERT INTO registros_privacidad (tipo_dato, fecha_hora, detalle_dato, nivel_sensibilidad, id_empresa) VALUES 								('ACTIVIDAD', NOW(), 'Like en publicación', 'BAJO', 1);
-SELECT *
-FROM registros_privacidad;
+ 

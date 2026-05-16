@@ -1,4 +1,4 @@
-package es.iescelia.util;
+package es.iescelia.connection;
 
 import java.sql.*;
 
