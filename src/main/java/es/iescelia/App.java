@@ -73,7 +73,7 @@ public class App extends Application {
         RegistroActividad regActividad = new RegistroActividad(
             102,
             LocalDateTime.now(),
-            "Accion: Login, Objetivo: Comprar",
+            "Accion: Login, Objetivo: Sistema",
             NivelSensibilidad.BAJO,
             miEmpresa
         );

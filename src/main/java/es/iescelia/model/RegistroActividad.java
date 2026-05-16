@@ -12,8 +12,7 @@ public class RegistroActividad extends RegistroPrivacidad {
             NivelSensibilidad nivelSensibilidad, Empresa empresa) {
         super(idRegistro, fechaHora, detalleDato, nivelSensibilidad, empresa);
         String[] partes = detalleDato.split(",");
-        // this.accion = partes[0].replace("Accion:", "").trim();
-        // this.objetivo = partes[1].replace("Objetivo:", "").trim();
+        
         if (partes.length >= 2) {
             this.accion = partes[0].replace("Accion:", "").trim();
             this.objetivo = partes[1].replace("Objetivo:", "").trim();

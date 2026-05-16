@@ -49,7 +49,9 @@ public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
     @Override
     public List<RegistroPrivacidad> findAll() {
         List<RegistroPrivacidad> listaRegistros = new ArrayList<>();
-        String sql = "SELECT * FROM registros_privacidad";
+        String sql = "SELECT r.*, e.nombre AS nombre_empresa, e.sector AS sector_empresa " +
+                     "FROM registros_privacidad r " +
+                     "INNER JOIN empresas e ON r.id_empresa = e.id_empresa";
 
         try (Connection conn = ConexionBD.conectar();
                 Statement stmt = conn.createStatement();
