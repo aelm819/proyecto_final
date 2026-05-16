@@ -4,9 +4,8 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import es.iescelia.connection.ConexionBD;
+import es.iescelia.dao.connection.ConexionBD;
 import es.iescelia.model.*;
-import es.iescelia.utils.*;
 
 public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
 
