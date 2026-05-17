@@ -19,9 +19,9 @@ CREATE TABLE registros_privacidad (
 );
 
  
-INSERT INTO empresas (nombre, sector) VALUES 
+INSERT INTO empresas (nombre, sector) VALUES
+('Google', 'Servicios Digitales'), 
 ('Meta', 'Redes Sociales'),
-('Google', 'Servicios Digitales'),
 ('Amazon', 'E-commerce');
  
 
