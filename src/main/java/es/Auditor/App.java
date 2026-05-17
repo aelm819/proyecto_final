@@ -12,6 +12,7 @@ import java.util.List;
 
 import es.auditor.dao.*;
 import es.auditor.model.*;
+import es.auditor.util.GestorArchivos;
 /**
  * JavaFX App
  */
@@ -42,7 +43,7 @@ public class App extends Application {
         // 1. Instanciar nuestros puentes (DAOs)
         // Usamos la interfaz DAO en la declaración por buenas prácticas (Polimorfismo)
         DAO<Empresa> empresaDAO = new EmpresaDAO();
-        DAO<RegistroPrivacidad> registroDAO = new RegistroPrivacidadDAO();
+        DAO<RegistroPrivacidad> registroDAO = new RegistroDAO();
 
         // ==========================================
         // PRUEBA 1: CREAR Y GUARDAR UNA EMPRESA
@@ -105,6 +106,9 @@ public class App extends Application {
         }
         
         System.out.println("\n¡Pruebas finalizadas con éxito! ");
+
+        GestorArchivos gestor = new GestorArchivos();
+        gestor.importarDatos("src/main/resources/mock_data/google_mock_dataset.csv");
     }
     
 

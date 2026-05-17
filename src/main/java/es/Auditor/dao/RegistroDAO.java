@@ -7,7 +7,7 @@ import java.util.*;
 import es.auditor.dao.connection.ConexionBD;
 import es.auditor.model.*;
 
-public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
+public class RegistroDAO implements DAO<RegistroPrivacidad> {
 
     @Override
     public Optional<RegistroPrivacidad> findById(int id) {

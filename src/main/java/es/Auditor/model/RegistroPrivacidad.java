@@ -19,6 +19,7 @@ public class RegistroPrivacidad {
         this.nivelSensibilidad = nivelSensibilidad;
         this.empresa = empresa;
     }
+
     // Getters y Setters
 
     public int getIdRegistro() {
