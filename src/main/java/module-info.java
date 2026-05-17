@@ -4,6 +4,6 @@ module es.iescelia {
     requires transitive javafx.graphics;
     requires java.sql;
 
-    opens es.iescelia to javafx.fxml;
-    exports es.iescelia;
+    opens es.Auditor to javafx.fxml;
+    exports es.Auditor;
 }
