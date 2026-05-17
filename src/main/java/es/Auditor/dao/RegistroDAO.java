@@ -109,7 +109,6 @@ public class RegistroDAO implements DAO<RegistroPrivacidad> {
             pstmt.setInt(5, entity.getEmpresa().getId());
 
             pstmt.executeUpdate();
-            System.out.println("Empresa insertada correctamanete en la BD.");
 
         } catch (SQLException e) {
             System.err.println("Error al guardar datos en la BD: " + e.getMessage());

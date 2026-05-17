@@ -38,10 +38,10 @@ public class App extends Application {
 
     public static void main(String[] args) {
         // launch();
+        /* 
         System.out.println("Iniciando pruebas de DataFootprint Auditor...\n");
 
         // 1. Instanciar nuestros puentes (DAOs)
-        // Usamos la interfaz DAO en la declaración por buenas prácticas (Polimorfismo)
         DAO<Empresa> empresaDAO = new EmpresaDAO();
         DAO<RegistroPrivacidad> registroDAO = new RegistroDAO();
 
@@ -49,8 +49,6 @@ public class App extends Application {
         // PRUEBA 1: CREAR Y GUARDAR UNA EMPRESA
         // ==========================================
         System.out.println("--- 1. GUARDANDO EMPRESA ---");
-        // Nota: Asumo que tu constructor pide (id, nombre, sector). 
-        // Si el ID es autoincremental en MySQL, no hará falta pasarlo aquí.
         Empresa miEmpresa = new Empresa("TechGlobal", "Desarrollo de Software");
         
         empresaDAO.insert(miEmpresa);
@@ -79,7 +77,7 @@ public class App extends Application {
             miEmpresa
         );
 
-        // Los guardamos usando el mismo método (¡Magia del Polimorfismo!)
+        // Los guardamos usando el mismo método  
         registroDAO.insert(regUbicacion);
         registroDAO.insert(regActividad);
 
@@ -103,10 +101,12 @@ public class App extends Application {
                 System.out.println("   [TIPO: Actividad Detectada]");
             }
             System.out.println("-----------------------------------");
+            
+            System.out.println("\n¡Pruebas finalizadas con éxito! ");
         }
+        */
         
-        System.out.println("\n¡Pruebas finalizadas con éxito! ");
-
+        
         GestorArchivos gestor = new GestorArchivos();
         gestor.importarDatos("src/main/resources/mock_data/google_mock_dataset.csv");
     }

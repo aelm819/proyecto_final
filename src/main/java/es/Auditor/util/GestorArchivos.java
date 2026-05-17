@@ -33,7 +33,8 @@ public class GestorArchivos {
                 }
 
             }
-            
+
+            System.out.println("✅ ¡Éxito! Se han guardado 1000 registros");       
 
         } catch (IOException e) {
              System.err.println("Error al leer el archivo: " + e.getMessage());

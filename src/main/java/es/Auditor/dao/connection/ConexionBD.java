@@ -11,7 +11,7 @@ public class ConexionBD {
         Connection conexion = null;
         try {
             conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexión a BD establecida.");
+             
         } catch (SQLException e) {
             System.err.println("Error al conectar a la BD: " + e.getMessage());
         }
