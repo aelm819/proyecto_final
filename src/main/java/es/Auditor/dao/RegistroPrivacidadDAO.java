@@ -1,11 +1,11 @@
-package es.Auditor.dao;
+package es.auditor.dao;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import es.Auditor.dao.connection.ConexionBD;
-import es.Auditor.model.*;
+import es.auditor.dao.connection.ConexionBD;
+import es.auditor.model.*;
 
 public class RegistroPrivacidadDAO implements DAO<RegistroPrivacidad> {
 

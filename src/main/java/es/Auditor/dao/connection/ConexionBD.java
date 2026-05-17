@@ -1,4 +1,4 @@
-package es.Auditor.dao.connection;
+package es.auditor.dao.connection;
 
 import java.sql.*;
 

@@ -1,4 +1,4 @@
-package es.Auditor.dao;
+package es.auditor.dao;
 
 import java.util.*;
 

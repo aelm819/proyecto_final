@@ -1,4 +1,4 @@
-package es.Auditor.util;
+package es.auditor.util;
 
 public class GestorArchivos {
     

@@ -1,4 +1,4 @@
-package es.Auditor.model;
+package es.auditor.model;
 
 import java.time.LocalDateTime;
 

@@ -1,8 +1,8 @@
-package es.Auditor.controller;
+package es.auditor.controller;
 
 import java.io.IOException;
 
-import es.Auditor.App;
+import es.auditor.App;
 import javafx.fxml.FXML;
 
 public class PrimaryController {

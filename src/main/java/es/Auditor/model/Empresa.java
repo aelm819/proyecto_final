@@ -1,4 +1,4 @@
-package es.Auditor.model;
+package es.auditor.model;
 
 public class Empresa {
     private int id;

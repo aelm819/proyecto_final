@@ -1,4 +1,4 @@
-package es.Auditor;
+package es.auditor;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import es.Auditor.dao.*;
-import es.Auditor.model.*;
+import es.auditor.dao.*;
+import es.auditor.model.*;
 /**
  * JavaFX App
  */
