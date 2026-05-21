@@ -12,12 +12,15 @@
             <Label text="DataFootprint" textFill="WHITE" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
             <Label text="AUDITOR" textFill="#3498db" style="-fx-font-size: 14px; -fx-padding: 0 0 20 0;"/>
             
-            <Button fx:id="btnDashboard" text="📊 Dashboard Global" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
-            <Button fx:id="btnExplorador" text="🔍 Explorador y CRUD" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
-            <Button fx:id="btnMapa" text="🌍 Mapa de Rastreo" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
+            <Button fx:id="btnDashboard" onAction="#mostrarDashboard" text="📊 Dashboard Global" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
             
-            <Region VBox.vgrow="ALWAYS" /> <Button fx:id="btnImportar" text="📥 Importar CSV" maxWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-            <Button fx:id="btnExportar" text="📄 Generar Informe" maxWidth="Infinity" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+            <Button fx:id="btnExplorador" onAction="#mostrarExplorador" text="🔍 Explorador y CRUD" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
+            
+            <Button fx:id="btnMapa" onAction="#mostrarMapa" text="🌍 Mapa de Rastreo" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
+            
+            <Region VBox.vgrow="ALWAYS" /> <Button fx:id="btnImportar" onAction="#abrirExploradorArchivos" text="📥 Importar CSV" maxWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            
+            <Button fx:id="btnExportar" onAction="#generarInforme" text="📄 Generar Informe" maxWidth="Infinity" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
         </VBox>
     </left>
 

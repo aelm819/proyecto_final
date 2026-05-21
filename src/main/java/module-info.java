@@ -5,5 +5,6 @@ module es.auditor {
     requires java.sql;
 
     opens es.auditor to javafx.fxml;
+    opens es.auditor.controller to javafx.fxml;
     exports es.auditor;
 }
