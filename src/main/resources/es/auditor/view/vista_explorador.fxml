@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.auditor.controller.ExploradorController">
+    
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Filtrar por Empresa:" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="txtFiltroEmpresa" promptText="Ej: Google, Amazon..."/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tablaRegistros" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="colEmpresa" text="Empresa" prefWidth="150"/>
+                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="150"/>
+                <TableColumn fx:id="colDetalle" text="Detalle" prefWidth="250"/>
+                <TableColumn fx:id="colSensibilidad" text="Sensibilidad" prefWidth="120"/>
+            </columns>
+            <BorderPane.margin>
+                <Insets left="15" right="15" bottom="15"/>
+            </BorderPane.margin>
+        </TableView>
+    </center>
+
+    <right>
+        <VBox spacing="10" prefWidth="280" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="0" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Gestor de Registros" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            
+            <Label text="ID Empresa:"/>
+            <TextField fx:id="txtEmpresaId" promptText="ID numérico de la empresa..."/>
+            
+            <Label text="Fecha y Hora:"/>
+            <TextField fx:id="txtFechaHora" promptText="yyyy-MM-dd HH:mm:ss"/>
+            
+            <Label text="Detalle del Evento:"/>
+            <TextArea fx:id="txtDetalleDato" prefRowCount="3" promptText="Descripción del evento..."/>
+            
+            <Label text="Sensibilidad:"/>
+            <ComboBox fx:id="comboSensibilidad" promptText="Seleccionar nivel..."/>
+            
+            <VBox spacing="8">
+                <VBox.margin>
+                    <Insets top="15"/>
+                </VBox.margin>
+                <Button fx:id="btnAnadir" onAction="#anadirEvento" text="Añadir Evento Manual" maxWidth="Infinity" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+                <Button fx:id="btnActualizar" onAction="#actualizarSensibilidad" text="Actualizar Sensibilidad" maxWidth="Infinity" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+                <Button fx:id="btnBorrar" onAction="#borrarRegistro" text="Borrar Registro" maxWidth="Infinity" style="-fx-background-color: #c0392b; -fx-text-fill: white;"/>
+            </VBox>
+        </VBox>
+    </right>
+</BorderPane>
