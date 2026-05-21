@@ -13,6 +13,8 @@ public class MainController {
     @FXML
     private Button btnExplorador;
     @FXML
+    private Button btnMapa;
+    @FXML
     private StackPane areaCentral;
 
     @FXML
