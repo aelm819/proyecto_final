@@ -6,5 +6,6 @@ module es.auditor {
 
     opens es.auditor to javafx.fxml;
     opens es.auditor.controller to javafx.fxml;
+    opens es.auditor.model to javafx.base;
     exports es.auditor;
 }

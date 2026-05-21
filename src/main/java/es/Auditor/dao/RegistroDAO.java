@@ -49,7 +49,7 @@ public class RegistroDAO implements DAO<RegistroPrivacidad> {
     @Override
     public List<RegistroPrivacidad> findAll() {
         List<RegistroPrivacidad> listaRegistros = new ArrayList<>();
-        String sql = "SELECT r.*, e.nombre AS nombre_empresa, e.sector AS sector_empresa " +
+        String sql = "SELECT r.*, e.nombre, e.sector  " +
                      "FROM registros_privacidad r " +
                      "INNER JOIN empresas e ON r.id_empresa = e.id_empresa";
 
@@ -64,9 +64,9 @@ public class RegistroDAO implements DAO<RegistroPrivacidad> {
                 LocalDateTime fechaHora = rs.getTimestamp("fecha_hora").toLocalDateTime();
                 String detalleDato = rs.getString("detalle_dato");
                 NivelSensibilidad nSensibilidad = NivelSensibilidad.valueOf(rs.getString("nivel_sensibilidad"));
-                Empresa empresa = new Empresa(rs.getInt("id_empresa"));
-
-                // Empresa empresa = new Empresa(rs.getInt("id_empresa"), rs.getString("nombre"), rs.getString("sector") );
+                Empresa empresa = new Empresa(rs.getInt("id_empresa"), rs.getString("nombre"), rs.getString("sector") );
+                
+                // Empresa empresa = new Empresa(rs.getInt("id_empresa"));
                 // Empresa empresa = new Empresa(rs.getInt("id_empresa"), "Desconocido", "Desconocido");
 
                 if (tipoDato.equalsIgnoreCase("ACTIVIDAD")) {

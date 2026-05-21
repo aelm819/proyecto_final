@@ -1,60 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.auditor.controller.ExploradorController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.auditor.controller.ExploradorController">
     
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="10">
             <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
+                <Insets bottom="15" left="15" right="15" top="15" />
             </padding>
-            <Label text="Filtrar por Empresa:" style="-fx-font-weight: bold;"/>
-            <TextField fx:id="txtFiltroEmpresa" promptText="Ej: Google, Amazon..."/>
+            <Label style="-fx-font-weight: bold;" text="Filtrar por Empresa:" />
+            <TextField fx:id="txtFiltroEmpresa" promptText="Ej: Google, Amazon..." />
         </HBox>
     </top>
 
     <center>
-        <TableView fx:id="tablaRegistros" BorderPane.alignment="CENTER">
+        <TableView fx:id="tablaRegistros" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="colEmpresa" text="Empresa" prefWidth="150"/>
-                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="150"/>
-                <TableColumn fx:id="colDetalle" text="Detalle" prefWidth="250"/>
-                <TableColumn fx:id="colSensibilidad" text="Sensibilidad" prefWidth="120"/>
+                <TableColumn fx:id="colEmpresa" prefWidth="150" text="Empresa" />
+                <TableColumn fx:id="colId" text="id_registro" />
+                <TableColumn fx:id="colTipo" prefWidth="150.0" text="Tipo" />
+                <TableColumn fx:id="colFecha" prefWidth="150" text="Fecha" />
+                <TableColumn fx:id="colDetalle" prefWidth="250.0" text="Detalle" />
+                <TableColumn fx:id="colSensibilidad" text="Sensibilidad" />
             </columns>
             <BorderPane.margin>
-                <Insets left="15" right="15" bottom="15"/>
+                <Insets bottom="15" left="15" right="15" />
             </BorderPane.margin>
         </TableView>
     </center>
 
     <right>
-        <VBox spacing="10" prefWidth="280" BorderPane.alignment="CENTER">
+        <VBox prefWidth="200.0" spacing="10" BorderPane.alignment="CENTER">
             <padding>
-                <Insets top="0" right="15" bottom="15" left="15"/>
+                <Insets bottom="15" left="15" right="15" top="0" />
             </padding>
-            <Label text="Gestor de Registros" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Gestor de Registros" />
             
-            <Label text="ID Empresa:"/>
-            <TextField fx:id="txtEmpresaId" promptText="ID numérico de la empresa..."/>
+            <Label text="ID Empresa:" />
+            <TextField fx:id="txtEmpresaId" promptText="ID numérico de la empresa..." />
             
-            <Label text="Fecha y Hora:"/>
-            <TextField fx:id="txtFechaHora" promptText="yyyy-MM-dd HH:mm:ss"/>
+            <Label text="Fecha y Hora:" />
+            <TextField fx:id="txtFechaHora" promptText="yyyy-MM-dd HH:mm:ss" />
             
-            <Label text="Detalle del Evento:"/>
-            <TextArea fx:id="txtDetalleDato" prefRowCount="3" promptText="Descripción del evento..."/>
+            <Label text="Detalle del Evento:" />
+            <TextArea fx:id="txtDetalleDato" prefRowCount="3" promptText="Descripción del evento..." />
             
-            <Label text="Sensibilidad:"/>
-            <ComboBox fx:id="comboSensibilidad" promptText="Seleccionar nivel..."/>
+            <Label text="Sensibilidad:" />
+            <ComboBox fx:id="comboSensibilidad" promptText="Seleccionar nivel..." />
             
             <VBox spacing="8">
                 <VBox.margin>
-                    <Insets top="15"/>
+                    <Insets top="15" />
                 </VBox.margin>
-                <Button fx:id="btnAnadir" onAction="#anadirEvento" text="Añadir Evento Manual" maxWidth="Infinity" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
-                <Button fx:id="btnActualizar" onAction="#actualizarSensibilidad" text="Actualizar Sensibilidad" maxWidth="Infinity" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
-                <Button fx:id="btnBorrar" onAction="#borrarRegistro" text="Borrar Registro" maxWidth="Infinity" style="-fx-background-color: #c0392b; -fx-text-fill: white;"/>
+                <Button fx:id="btnAnadir" maxWidth="Infinity" onAction="#anadirEvento" style="-fx-background-color: #34495e; -fx-text-fill: white;" text="Añadir Evento Manual" />
+                <Button fx:id="btnActualizar" maxWidth="Infinity" onAction="#actualizarSensibilidad" style="-fx-background-color: #2980b9; -fx-text-fill: white;" text="Actualizar Sensibilidad" />
+                <Button fx:id="btnBorrar" maxWidth="Infinity" onAction="#borrarRegistro" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Borrar Registro" />
             </VBox>
         </VBox>
     </right>
