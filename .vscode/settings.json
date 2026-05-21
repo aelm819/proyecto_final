@@ -1,5 +1,6 @@
 {
     "java.debug.settings.onBuildFailureProceed": true,
     "prettier.requireConfig": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

@@ -7,12 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.List;
+// import java.time.LocalDateTime;
+// import java.util.List;
 
-import es.auditor.dao.*;
-import es.auditor.model.*;
-import es.auditor.util.GestorArchivos;
+// import es.auditor.dao.*;
+// import es.auditor.model.*;
+// import es.auditor.util.GestorArchivos;
 /**
  * JavaFX App
  */
@@ -107,8 +107,8 @@ public class App extends Application {
         */
         
         
-        GestorArchivos gestor = new GestorArchivos();
-        gestor.importarDatos("src/main/resources/mock_data/google_mock_dataset.csv");
+        // GestorArchivos gestor = new GestorArchivos();
+        // gestor.importarDatos("src/main/resources/mock_data/google_mock_dataset.csv");
     }
     
 

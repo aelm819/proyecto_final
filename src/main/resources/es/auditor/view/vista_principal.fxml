@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.auditor.controller.MainController" prefWidth="1000" prefHeight="700">
+    <left>
+        <VBox spacing="15" prefWidth="220" style="-fx-background-color: #2c3e50;">
+            <padding>
+                <Insets top="30" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="DataFootprint" textFill="WHITE" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label text="AUDITOR" textFill="#3498db" style="-fx-font-size: 14px; -fx-padding: 0 0 20 0;"/>
+            
+            <Button fx:id="btnDashboard" text="📊 Dashboard Global" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
+            <Button fx:id="btnExplorador" text="🔍 Explorador y CRUD" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
+            <Button fx:id="btnMapa" text="🌍 Mapa de Rastreo" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;"/>
+            
+            <Region VBox.vgrow="ALWAYS" /> <Button fx:id="btnImportar" text="📥 Importar CSV" maxWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Button fx:id="btnExportar" text="📄 Generar Informe" maxWidth="Infinity" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="areaCentral" style="-fx-background-color: #ecf0f1;">
+            <Label text="Bienvenido. Selecciona una opción del menú." textFill="#7f8c8d"/>
+        </StackPane>
+    </center>
+</BorderPane>
